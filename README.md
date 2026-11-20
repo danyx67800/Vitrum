@@ -23,9 +23,9 @@
 
 ### Screenshot
 
-| Home 1080p | Impostazioni 1080p | Aggiornamento OTA 1080p |
+| Home 1080p | Impostazioni 4K | Aggiornamento OTA 1080p |
 | --- | --- | --- |
-| ![Home 1080p](docs/screenshots/home-1080p.png) | ![Impostazioni 1080p](docs/screenshots/settings-1080p.png) | ![OTA 1080p](docs/screenshots/ota-1080p.png) |
+| ![Home 1080p](docs/screenshots/home-1080p.png) | ![Impostazioni 4K](docs/screenshots/settings-4k.png) | ![OTA 1080p](docs/screenshots/ota-1080p.png) |
 
 Screenshot reali dall'emulatore Android TV (Google TV, API 31) a 720p, 1080p, 1440p e 3840×2160 nativo. La schermata OTA mostra l'aggiornamento da v1.0.0 a v1.0.1 scaricato e installato nell'emulatore.
 
