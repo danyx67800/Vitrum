@@ -7,7 +7,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val appVersionName = (project.findProperty("versionName") as String?) ?: "1.0.0"
+val appVersionName = (project.findProperty("versionName") as String?) ?: "1.0.1"
 val semver = appVersionName.removePrefix("v").split(".")
 val appVersionCode = semver.getOrNull(0)?.toIntOrNull().orZero() * 10000 +
     semver.getOrNull(1)?.toIntOrNull().orZero() * 100 +
