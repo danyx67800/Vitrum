@@ -23,11 +23,13 @@
 
 ### Screenshot
 
-| Home 1080p | Impostazioni 1080p | Home 720p |
+| Home 1080p | Impostazioni 1080p | Aggiornamento OTA 1080p |
 | --- | --- | --- |
-| ![Home 1080p](docs/screenshots/home-1080p.png) | ![Impostazioni 1080p](docs/screenshots/settings-1080p.png) | ![Home 720p](docs/screenshots/home-720p.png) |
+| ![Home 1080p](docs/screenshots/home-1080p.png) | ![Impostazioni 1080p](docs/screenshots/settings-1080p.png) | ![OTA 1080p](docs/screenshots/ota-1080p.png) |
 
-Screenshot reali dall'emulatore Android TV (Google TV, API 31). Altre risoluzioni in [`docs/screenshots`](docs/screenshots).
+Screenshot reali dall'emulatore Android TV (Google TV, API 31) a 720p, 1080p, 1440p e 3840×2160 nativo. La schermata OTA mostra l'aggiornamento da v1.0.0 a v1.0.1 scaricato e installato nell'emulatore.
+
+Altre risoluzioni: [home 720p](docs/screenshots/home-720p.png) · [impostazioni 720p](docs/screenshots/settings-720p.png) · [OTA 720p](docs/screenshots/ota-720p.png) · [home 1440p](docs/screenshots/home-1440p.png) · [impostazioni 1440p](docs/screenshots/settings-1440p.png) · [OTA 1440p](docs/screenshots/ota-1440p.png) · [home 4K](docs/screenshots/home-4k.png) · [impostazioni 4K](docs/screenshots/settings-4k.png) · [OTA 4K](docs/screenshots/ota-4k.png).
 
 ### Funzionalità
 
@@ -65,6 +67,8 @@ Installa l'APK via ADB o Downloader, apri Vitrum, poi **Impostazioni → Sistema
 ### Aggiornamenti OTA
 
 Vitrum legge le release pubbliche del repository tramite l'API GitHub (ETag/If-None-Match per rispettare il rate limit). Un aggiornamento viene proposto solo se il tag `vX.Y.Z` è più recente della versione installata; il `versionCode` è calcolato come `major*10000 + minor*100 + patch`. Il download è consentito solo da host GitHub in HTTPS, riprende con `Range` e viene verificato con lo SHA-256 pubblicato nella release. L'APK deve avere la stessa firma dell'app installata. Tutte le release ufficiali sono firmate con la stessa keystore, custodita fuori dal repository.
+
+La release di prova [v1.0.1](https://github.com/danyx67800/Vitrum/releases/tag/v1.0.1) è stata usata per verificare l'intero percorso OTA: dalla v1.0.0 installata il launcher ha rilevato la nuova versione, scaricato l'APK, verificato checksum e certificato, aperto il dialogo di sistema e completato l'aggiornamento; un nuovo controllo restituisce “You are up to date”. Il flusso è provato solo su emulatore, non su hardware Fire TV.
 
 ### Privacy
 
@@ -153,15 +157,15 @@ See `CONTRIBUTING.md` for contribution rules.
 
 ## Test e limiti / Testing and limitations
 
-**Eseguito:** build debug, build release firmata e verificata con `apksigner`, 24 unit test JVM, `lintDebug` senza errori, onboarding e navigazione D-pad di base, schermate home/impostazioni su emulatore Google TV API 31 a 720p, 1080p e 1440p. Le prove OTA sono descritte qui sotto dopo la pubblicazione delle release.
+**Eseguito:** build debug e release firmata (verificata con `apksigner`, certificato SHA-256 `72318ec8a67e6c2bfad5f68d53bada40df4a4dafaa846eb343b0b24bb7a2a932`), 24 unit test JVM, `lintDebug` senza errori, build CI verdi per `main` e per il tag `v1.0.1`. Onboarding e navigazione D-pad provati su emulatore Google TV API 31 con screenshot di home, impostazioni e OTA a 720p, 1080p, 1440p e 3840×2160 nativo (AVD TV 4K, densità 640). **OTA end-to-end riuscito:** v1.0.0 installata dalla release GitHub → v1.0.1 rilevata tramite API, APK scaricato, SHA-256 e firma verificati, dialogo di installazione di sistema confermato; al riavvio `versionName=1.0.1` e un secondo controllo mostra “You are up to date”.
 
-**Non eseguito:** nessun Fire TV Stick, Fire TV Cube o TV Android TV fisica; nessun test del tasto Home Amazon; nessuna installazione reale da Downloader; nessun test su hardware a 1 GB di RAM. L'emulatore headless ha fermato l'override a 2560×1440, quindi non è stato possibile produrre uno screenshot nativo 4K. Il blur reale e il fallback sono stati visti su emulatore, non su GPU TV reali.
+**Non eseguito:** nessun Fire TV Stick, Fire TV Cube o TV Android TV fisica; nessun test del tasto Home Amazon; nessuna installazione reale da Downloader; nessun test su hardware a 1 GB di RAM né su Fire OS 5/API 22 (l'emulatore è API 31); nessuna misura di prestazioni o del blur su GPU TV reali. Il 4K è stato verificato solo come rendering statico su emulatore, non come riproduzione fluida su hardware.
 
 **Da provare a mano:** su un FireStick 4K Max e un dispositivo Android TV, verificare Home/LEANBACK launcher, focus con telecomando, overscan, prestazioni con 60+ app, download OTA e dialogo di installazione di sistema.
 
-**Performed:** debug build, signed release verified with `apksigner`, 24 JVM unit tests, `lintDebug` with no errors, onboarding and basic D-pad navigation, home/settings screenshots on a Google TV API 31 emulator at 720p, 1080p and 1440p. OTA checks are documented below after the releases are published.
+**Performed:** debug and signed release builds (`apksigner`-verified, certificate SHA-256 `72318ec8a67e6c2bfad5f68d53bada40df4a4dafaa846eb343b0b24bb7a2a932`), 24 JVM unit tests, `lintDebug` with no errors, green CI builds for `main` and tag `v1.0.1`. Onboarding and basic D-pad navigation were exercised on a Google TV API 31 emulator with home, settings and update screenshots at 720p, 1080p, 1440p and native 3840×2160 (TV 4K AVD at density 640). **End-to-end OTA succeeded:** v1.0.0 installed from the GitHub release → v1.0.1 detected through the API, APK downloaded, SHA-256 and signature verified, system installer confirmed; after restart `versionName=1.0.1` and a second check reports “You are up to date”.
 
-**Not performed:** no physical Fire TV Stick, Fire TV Cube or Android TV; no Amazon Home-button test; no real Downloader installation; no 1 GB-RAM hardware test. The headless emulator capped the display override at 2560×1440, so a native 4K screenshot could not be produced. Real blur and the bitmap fallback were seen only on the emulator.
+**Not performed:** no physical Fire TV Stick, Fire TV Cube or Android TV; no Amazon Home-button test; no real Downloader installation; no 1 GB-RAM hardware and no Fire OS 5/API 22 test (the emulator runs API 31); no performance or real-GPU blur measurements. 4K was verified as static rendering on the emulator, not as smooth playback on TV hardware.
 
 **Manual checks still needed:** on a Fire TV Stick 4K Max and an Android TV device, verify Home/LEANBACK launching, D-pad focus, overscan, performance with 60+ apps, OTA download and the system install dialog.
 
