@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest an improvement for Vitrum
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is hard or missing today, and on which device?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How should it work with a D-pad? Keep weak Fire TV hardware in mind.
+    validations:
+      required: true
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Constraints
+      options:
+        - label: The proposal works without Google Play Services.
+          required: true
+        - label: The proposal does not require root or disabling system apps.
+          required: true
