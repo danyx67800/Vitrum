@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="vitrum_bg">#FF05070D</color>
+    <color name="vitrum_accent">#FF7FD8FF</color>
+    <color name="vitrum_glass">#1AFFFFFF</color>
+</resources>
