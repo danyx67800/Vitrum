@@ -65,6 +65,7 @@
     <string name="keyboard_hint">Usa il D-pad; OK digita il tasto selezionato</string>
     <string name="search_clear">Cancella</string>
     <string name="search_space">Spazio</string>
+    <string name="backspace_key">Cancella</string>
 
     <string name="cat_appearance">Aspetto</string>
     <string name="cat_layout">Layout</string>
@@ -165,6 +166,14 @@
     <string name="fahrenheit">Fahrenheit (°F)</string>
     <string name="weather_unavailable">Meteo non disponibile</string>
     <string name="weather_powered">Dati meteo di Open-Meteo</string>
+    <string name="weather_clear">Sereno</string>
+    <string name="weather_partly">Poco nuvoloso</string>
+    <string name="weather_cloudy">Nuvoloso</string>
+    <string name="weather_fog">Nebbia</string>
+    <string name="weather_drizzle">Pioviggine</string>
+    <string name="weather_rain">Pioggia</string>
+    <string name="weather_snow">Neve</string>
+    <string name="weather_storm">Temporale</string>
 
     <string name="home_behavior">Effetto tasto Home</string>
     <string name="home_top">Torna in cima</string>
@@ -174,16 +183,16 @@
     <string name="sounds_desc">Click di sistema leggero su focus e selezione.</string>
 
     <string name="system_shortcuts_desc">Apri pannelli di sistema. Le voci compaiono solo se supportate.</string>
-    <string name="open_wifi">Impostazioni Wi-Fi</string>
-    <string name="open_bluetooth">Impostazioni Bluetooth</string>
-    <string name="open_display">Impostazioni Display</string>
-    <string name="open_sound">Impostazioni Audio</string>
-    <string name="open_network">Impostazioni Rete</string>
-    <string name="open_settings">Impostazioni complete</string>
+    <string name="open_wifi">Wi-Fi</string>
+    <string name="open_bluetooth">Bluetooth</string>
+    <string name="open_display">Display</string>
+    <string name="open_sound">Audio</string>
+    <string name="open_network">Rete</string>
+    <string name="open_settings">Impostazioni</string>
     <string name="device_info">Info dispositivo</string>
     <string name="hdmi_inputs">Ingressi HDMI</string>
     <string name="hdmi_input">Ingresso %1$d</string>
-    <string name="launcher_setup">Imposta come launcher predefinito</string>
+    <string name="launcher_setup">Launcher predefinito</string>
     <string name="launcher_setup_desc">Fai aprire Vitrum quando premi Home su Android TV / Google TV.</string>
     <string name="open_home_settings">Apri impostazioni Home</string>
     <string name="fire_tv_title">Il tasto Home su Fire TV</string>
@@ -251,6 +260,10 @@
     <string name="err_no_asset">Questa release non contiene un APK compatibile.</string>
     <string name="err_no_checksum">La release non contiene il file SHA-256. Installazione bloccata.</string>
     <string name="err_unknown">Qualcosa è andato storto. Riprova.</string>
+    <string name="err_wifi_only">I download sono limitati a Wi-Fi o Ethernet. Collegati o cambia l\'impostazione.</string>
+    <string name="install_success">Vitrum aggiornato</string>
+    <string name="install_cancelled">Installazione annullata</string>
+    <string name="install_failed_generic">Installazione non riuscita</string>
     <string name="err_http">GitHub ha restituito un errore. Riprova più tardi.</string>
     <string name="install_permission_title">Consenti a Vitrum di installare aggiornamenti</string>
     <string name="install_permission_body">Android richiede il tuo permesso prima di installare un aggiornamento. Attiva “Consenti da questa origine”, poi torna a Vitrum.</string>
@@ -269,7 +282,7 @@
     <string name="ob_launcher_title">Impostala come Home</string>
     <string name="ob_launcher_body">Android TV permette di scegliere Vitrum come Home. Fire OS no; Vitrum resterà comunque nell\'elenco app.</string>
     <string name="ob_calibration_title">Adatta i bordi</string>
-    <string name="ob_calibration_body">Usa le frecce per regolare i margini finché la cornice tratteggiata è completamente visibile.</string>
+    <string name="ob_calibration_body">Regola i margini finché la cornice tratteggiata è completamente visibile sulla TV. Potrai modificarlo in Impostazioni → Layout.</string>
     <string name="ob_start">Inizia a usare Vitrum</string>
     <string name="ob_step">Passo %1$d di %2$d</string>
     <string name="ob_accent">Accento</string>

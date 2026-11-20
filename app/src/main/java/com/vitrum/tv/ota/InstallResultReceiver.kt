@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageInstaller
 import android.os.Build
 import android.widget.Toast
+import com.vitrum.tv.R
 
 class InstallResultReceiver : BroadcastReceiver() {
 
@@ -29,13 +30,12 @@ class InstallResultReceiver : BroadcastReceiver() {
             .putInt(KEY_INSTALL_STATUS, status)
             .putString(KEY_INSTALL_MESSAGE, message)
             .apply()
-        if (status == PackageInstaller.STATUS_SUCCESS) {
-            Toast.makeText(context, "Vitrum updated", Toast.LENGTH_SHORT).show()
-        } else if (status == PackageInstaller.STATUS_FAILURE_ABORTED) {
-            Toast.makeText(context, "Install cancelled", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, message ?: "Install failed", Toast.LENGTH_LONG).show()
+        val text = when (status) {
+            PackageInstaller.STATUS_SUCCESS -> R.string.install_success
+            PackageInstaller.STATUS_FAILURE_ABORTED -> R.string.install_cancelled
+            else -> R.string.install_failed_generic
         }
+        Toast.makeText(context, context.getString(text), Toast.LENGTH_LONG).show()
     }
 
     companion object {

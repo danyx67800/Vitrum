@@ -83,6 +83,7 @@ android {
     lint {
         abortOnError = true
         checkReleaseBuilds = true
+        lintConfig = file("lint.xml")
         disable += setOf("GoogleAppIndexingWarning")
     }
     testOptions {

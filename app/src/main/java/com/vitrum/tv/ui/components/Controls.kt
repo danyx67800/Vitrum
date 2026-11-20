@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -119,13 +121,15 @@ fun FocusableGlass(
                 onClick = onClick,
             ),
     ) {
+        // The panel is measured after the content and drawn behind it. The content
+        // determines the control's intrinsic size unless the caller sets one.
         GlassPanel(
             modifier = Modifier.matchParentSize(),
             shape = resolvedShape,
             focused = focused,
             allowRealBlur = allowRealBlur,
-            contentPadding = contentPadding,
-        ) {
+        ) {}
+        Box(Modifier.fillMaxHeight().padding(contentPadding)) {
             content(focused)
         }
     }
@@ -190,21 +194,22 @@ fun GlassIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    buttonSize: androidx.compose.ui.unit.Dp = 50.dp,
 ) {
     val colors = LocalVitrumColors.current
     FocusableGlass(
         onClick = onClick,
-        modifier = modifier.size(50.dp),
+        modifier = modifier.size(buttonSize),
         enabled = enabled,
         focusedScale = 1.09f,
         contentPadding = PaddingValues(0.dp),
     ) { focused ->
-        Box(Modifier.matchParentSize(), contentAlignment = Alignment.Center) {
+        Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Image(
                 painter = rememberVectorPainter(icon),
                 contentDescription = contentDescription,
                 colorFilter = ColorFilter.tint(if (focused) colors.accent else colors.textPrimary),
-                modifier = Modifier.size(22.dp),
+                modifier = Modifier.size(if (buttonSize < 44.dp) 18.dp else 22.dp),
             )
         }
     }

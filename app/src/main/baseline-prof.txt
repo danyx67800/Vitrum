@@ -1,0 +1,6 @@
+HSPLcom/vitrum/tv/VitrumApp;->onCreate()V
+HSPLcom/vitrum/tv/MainActivity;->onCreate(Landroid/os/Bundle;)V
+HSPLcom/vitrum/tv/MainActivity;->onResume()V
+HSPLcom/vitrum/tv/ui/MainViewModel;-><init>(Landroid/app/Application;)V
+HSPLcom/vitrum/tv/ui/MainViewModel;->onHomePressed()V
+HSPLcom/vitrum/tv/ui/MainViewModel;->onActivityResumed()V

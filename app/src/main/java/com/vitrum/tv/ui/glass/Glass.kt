@@ -64,11 +64,13 @@ fun GlassPanel(
             .clip(resolvedShape)
             .onGloballyPositioned { coordinates -> position = coordinates.positionInRoot() },
     ) {
-        BackdropLayer(
-            backdrop = backdrop,
-            position = position,
-            allowRealBlur = allowRealBlur,
-        )
+        Box(Modifier.matchParentSize()) {
+            BackdropLayer(
+                backdrop = backdrop,
+                position = position,
+                allowRealBlur = allowRealBlur,
+            )
+        }
         Box(
             Modifier
                 .matchParentSize()

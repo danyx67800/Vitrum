@@ -25,13 +25,25 @@ object SystemUtils {
         return try {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
                 ?: return NetState.OFFLINE
-            @Suppress("DEPRECATION")
-            val network = cm.activeNetwork ?: return NetState.OFFLINE
-            val caps = cm.getNetworkCapabilities(network) ?: return NetState.OFFLINE
-            when {
-                caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> NetState.WIFI
-                caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> NetState.ETHERNET
-                else -> NetState.OTHER
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val network = cm.activeNetwork ?: return NetState.OFFLINE
+                val caps = cm.getNetworkCapabilities(network) ?: return NetState.OFFLINE
+                when {
+                    caps.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> NetState.WIFI
+                    caps.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> NetState.ETHERNET
+                    caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) -> NetState.OTHER
+                    else -> NetState.OFFLINE
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                val info = cm.activeNetworkInfo ?: return NetState.OFFLINE
+                if (!info.isConnected) return NetState.OFFLINE
+                @Suppress("DEPRECATION")
+                when (info.type) {
+                    ConnectivityManager.TYPE_WIFI -> NetState.WIFI
+                    ConnectivityManager.TYPE_ETHERNET -> NetState.ETHERNET
+                    else -> NetState.OTHER
+                }
             }
         } catch (_: Exception) {
             NetState.OFFLINE

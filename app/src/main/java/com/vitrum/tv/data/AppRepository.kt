@@ -8,7 +8,9 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.os.Build
+import android.util.Log
 import androidx.core.content.ContextCompat
+import com.vitrum.tv.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -91,12 +93,18 @@ class AppRepository(private val context: Context) {
         val found = LinkedHashMap<String, AppInfo>()
         addCategory(found, Intent.CATEGORY_LEANBACK_LAUNCHER)
         addCategory(found, Intent.CATEGORY_LAUNCHER)
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Launcher apps: ${found.size} ${found.keys.joinToString()}")
+        }
         return found.values.sortedWith(compareBy(String.CASE_INSENSITIVE_ORDER) { it.label })
     }
 
     private fun addCategory(target: MutableMap<String, AppInfo>, category: String) {
         val intent = Intent(Intent.ACTION_MAIN).addCategory(category)
         val resolved = queryIntentActivities(intent)
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Query $category: ${resolved.size} activities")
+        }
         for (info in resolved) {
             val activity = info.activityInfo ?: continue
             val pkg = activity.packageName ?: continue
@@ -130,8 +138,13 @@ class AppRepository(private val context: Context) {
             } else {
                 packageManager.queryIntentActivities(intent, 0)
             }
-        } catch (_: Exception) {
+        } catch (error: Exception) {
+            if (BuildConfig.DEBUG) Log.w(TAG, "App query failed", error)
             emptyList()
         }
+    }
+
+    private companion object {
+        const val TAG = "VitrumApps"
     }
 }

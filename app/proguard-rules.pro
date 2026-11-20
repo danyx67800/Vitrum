@@ -22,6 +22,11 @@
 # Keep data enum names for settings JSON stability.
 -keepclassmembers enum com.vitrum.tv.** { *; }
 
+# Keep names referenced by the hand-authored startup baseline profile.
+-keepnames class com.vitrum.tv.VitrumApp
+-keepnames class com.vitrum.tv.MainActivity
+-keepnames class com.vitrum.tv.ui.MainViewModel
+
 -dontwarn org.conscrypt.**
 -dontwarn org.bouncycastle.**
 -dontwarn org.openjsse.**

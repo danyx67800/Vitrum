@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lint>
+    <!-- local.properties is machine-generated, gitignored and uses forward slashes,
+         which Gradle accepts. Escaping rules are irrelevant for this project file. -->
+    <issue id="PropertyEscape" severity="ignore" />
+</lint>

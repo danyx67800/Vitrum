@@ -72,6 +72,7 @@ data class Settings(
     val uiScale: Float = 1.0f,
     val overscanMargin: Int = 0,
     val favorites: List<String> = emptyList(),
+    val customLabels: Map<String, String> = emptyMap(),
     val hiddenApps: List<String> = emptyList(),
     val customRows: List<CustomRow> = emptyList(),
     val manualOrder: List<String> = emptyList(),

@@ -114,7 +114,7 @@ fun VitrumTheme(
         ThemeMode.LIGHT -> false
         ThemeMode.AUTO -> isSystemInDarkTheme()
     }
-    val tintAlpha = (settings.glassOpacity / 100f).coerceIn(0.06f, 0.3f)
+    val tintAlpha = (settings.glassOpacity / 100f).coerceIn(0f, 0.3f)
     val textFactor = when (settings.textSize) {
         TextSizeOption.SMALL -> VitrumThemeDefaults.SmallText
         TextSizeOption.NORMAL -> 1f
@@ -147,7 +147,7 @@ fun VitrumTheme(
             isLight = true,
             textPrimary = Color(0xFF0B1727),
             textSecondary = Color(0xFF33465E),
-            accent = accent,
+            accent = androidx.compose.ui.graphics.lerp(accent, Color(0xFF001018), 0.38f),
             glassTint = Color.White.copy(alpha = 0.58f),
             glassTintStrong = Color.White.copy(alpha = 0.74f),
             panelScrim = Color.White.copy(alpha = 0.16f),
